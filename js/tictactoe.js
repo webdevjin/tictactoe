@@ -8,41 +8,84 @@ $(document).ready(function(){
 //
 // if select the non-winning cell - no score,
 //
-//function count() {
-// 	if(x<1)}
-//    x += 1;}
-// 	else {
-// 		x = 0;
-// 	}
-// }
 // check the pattern
 // set default null vs blank
 
-    var board = $(".cell");
-    var cross = x;
-    var nought = o;
+    // var board = $(".cell");
+    var player1 = 'x';
+    var player2 = 'o';
+    var winner = "";
+    var turnCount = 0;
     var gameStart = "_";
 
-    $(".cell").on("click", function(){
-      alert(.this).$("#cell")
+    var currentTurn = 'x';
+
+    window.board = [
+      ["","",""],
+      ["","",""],
+      ["","",""]
+    ];
+
+    var checkWin = function () {
+
+      // winning rows:
+      // board[0][0], board[0][1], board[0][2]
+      // board[1][0], board[1][1], board[1][2]
+      // board[2][0], board[2][1], board[2][2]
+
+      // if( board[0][0] === 'x' && board[0][1] == 'x' && board[0][2] == 'x'){
+      // }
+      //
+      if( (board[0][0] + board[0][1] + board[0][2]) === 'xxx'){
+        alert('X wins!');
+      }
+      if ( (board[1][0] + board[1][1] + board[1][2]) === 'xxx'){
+        alert('X wins!');
+      }
+      if ( (board[2][0] + board [2][1] + board[2][2] === 'xxx'){
+      }
+      if ( (board[0][0] + board [1][0] + board [2][0] === 'xxx'){
+      }
+      if ( (board[0][1] + board [1][1] + board [2][0] === 'xxx')}
+      }
+      if 
+
     };
 
-    var placeX = function(chooseCell){
-      var xWin = [[r1_1, r1_2, r1_3],
-                  [r2_1, r2_2, r2_3],
-                  [r3_1, r3_5, r3_9],
-                  [r1_1],r2_2, r3_9],
-                  [r1_1, r2_1, r3_1]];
+    var cellClick = function(){
+      console.log('clicked!');
 
-    for (var i = 0; i < 3; i++) {
-      placeX[i]};
+      turnCount++;
+      // turnCount += 1;
+      // turnCount = turnCount + 1;
 
-      if {chooseCell =
+      var id = this.id;
+      var row = id[0];
+      var col = id[1];
+      board[row][col] = currentTurn;
+      $(this).html( currentTurn );
+
+      checkWin();
+
+      // switch to next player's turn
+      if( currentTurn === 'x') {
+        currentTurn = 'o';
+      } else {
+        currentTurn = 'x';
+      }
+
+
+    };
 
 
 
-  }
+    $(".cell").on("click", cellClick);
 
-  // $(".cell").on("click", function(){
-  //  (.this).append('cross').($("#cell"))};
-};
+  });
+// =================================================================
+  // for (var i = 0; i < board.length; i++) {
+  //   board[i]
+  //
+  //
+  // }
+// }
