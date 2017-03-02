@@ -3,9 +3,6 @@ $(document).ready(function() {
 
     // var board = $(".cell");
 
-    var player1 = "../images/man.png";
-    var player2 = "../images/donut.png";
-    var winner = "";
     var turnCount = 0;
     var $msg = $('#message'); //create $msg to store result messages
     //set currentTurn
@@ -13,7 +10,8 @@ $(document).ready(function() {
 
     var gameOver = false;  // set the ininial game start
 
-    window.board = [
+
+    window.board = [  //create global vairable board with 3x3 blank, data pattern
       ["","",""],
       ["","",""],
       ["","",""]
@@ -152,7 +150,7 @@ $(document).ready(function() {
         ["","",""],
         ["","",""]
       ]
-//set time out for game result message display - 3s, clear message, clear board
+//set time out for game result message display - 4s, clear message, clear board
       setTimeout(function(){
         $(".cell").removeClass('x').removeClass('o');
         turnCount = 0;

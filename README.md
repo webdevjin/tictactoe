@@ -1,4 +1,7 @@
 Project: Two Players Tic-Tac-Toe Game
+By: Jin Liaskos, Student GA - wdi 20, 2017
+
+
 Demo: url here
 Development tools:
 	•	Javascript
@@ -23,3 +26,10 @@ The player who placing three of their marks in a horizontal, vertical, or diagon
 If there is no winning pattern selected, it is a draw game.
 
 Result messages will display and hold for 4 seconds for the game to restart, or the player can click the Game Start button to refresh the page starting the new game.
+
+Future enhancements:
+
+ - Score board displays player names, and winning scores
+ - Input text for players to type in their names, and names to display on the score board
+ - More token for players to choose
+ - Refine look and feel to be more appealing to target audience 
