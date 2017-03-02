@@ -1,22 +1,17 @@
 $(document).ready(function() {
 
-//var cnt = 0;
-          // for (var i = 9; i < board.length; i++) {
-          //   board[i]
-          // }
-          //   return "draw";  // Cat's game!
-          // }
-
 
     // var board = $(".cell");
 
-    var player1 = 'x';
-    var player2 = 'o';
+    var player1 = "../images/man.png";
+    var player2 = "../images/donut.png";
     var winner = "";
     var turnCount = 0;
+    var $msg = $('#message'); //create $msg to store result messages
+    //set currentTurn
+    var currentTurn = 'x'; //set the starting turn in this case set as 'x'to have first turn
 
-
-    var currentTurn = 'x';
+    var gameOver = false;  // set the ininial game start
 
     window.board = [
       ["","",""],
@@ -24,8 +19,7 @@ $(document).ready(function() {
       ["","",""]
     ];
 
-
-
+// create check x winning function, and define winning pattern
     var checkWin_x = function () {
       if( (board[0][0] + board[0][1] + board[0][2]) === 'xxx'){
         return true; // first row
@@ -57,11 +51,10 @@ $(document).ready(function() {
         return true; //diagonal works
       }
 
-      console.log("Play again");
       return false;
 
     };
-
+//create check winning function and define winning pattern for '0'
     var checkWin_o = function () {
 
       if( (board[0][0] + board[0][1] + board[0][2]) === 'ooo'){
@@ -89,12 +82,11 @@ $(document).ready(function() {
       if ( (board[0][0] + board[1][1] + board[2][2]) === 'ooo'){
         return true; // diagonal ok
       }
-      if ( (board[2][0] + board[1][1] + board[2][0]) === 'ooo'){
+      if ( (board[2][0] + board[1][1] + board[0][2]) === 'ooo'){
         return true; // diagonal -45 ok
 
       }
 
-      console.log("Play again");
       return false;
 
   }; // end of checkWin_o
@@ -103,28 +95,43 @@ $(document).ready(function() {
     var cellClick = function(){
       console.log('clicked!');
 
+      var id = this.id;
+      var row = id[0];
+      var col = id[1];
+
+      // Return early from this click handler function (which means we ignore the click)
+      // if the game is over, or the square is already taken (not empty)
+      if( gameOver || board[row][col] !== "" ){
+        return;
+      }
+
       turnCount++;
       console.log('count:', turnCount);
       // turnCount += 1;
       // turnCount = turnCount + 1;
 
-      var id = this.id;
-      var row = id[0];
-      var col = id[1];
       board[row][col] = currentTurn;
       console.log(this);
-      $(this).css('background-image', 'url(../images/man.png)');
-      $(this).html( currentTurn );
+
+      // $(this).css('background-image', 'url(images/man.png)');
+
+      $(this).addClass( currentTurn );
+
+      // $(this).html( currentTurn );
 
       // var xWin = checkWin_x();
       if( checkWin_x() ){
-        alert('X wins!');
+        $msg.html('X, You win!');
+        // alert('X wins!');
+        gameOver = true;
         gameReset();
       } else if( checkWin_o() ){
-        alert('O wins!');
+        $msg.html('O, You win!');
+        gameOver = true;
         gameReset();
       } else if ( turnCount === 9 ) {
-        alert ("It's a draw");
+        $msg.html("It's a draw!");
+        gameOver = true;
         gameReset();
       }
 
@@ -137,20 +144,27 @@ $(document).ready(function() {
       }
 
     };
-
-    var gameReset = function(){
+//create gameReset function to clear the board
+    window.gameReset = function(){
+      console.log("Game reset running");
       window.board = [
         ["","",""],
         ["","",""],
         ["","",""]
       ]
-      $(".cell").html("");
-      turnCount === 0;
-    }
+//set time out for game result message display - 3s, clear message, clear board
+      setTimeout(function(){
+        $(".cell").removeClass('x').removeClass('o');
+        turnCount = 0;
+        $msg.html('');
+        gameOver = false;
+      }, 4000);
 
-    // $(".cell").on("click", cellClick);
+    };
 
-    $(".cell").on("click", cellClick);
+    $("#start").on("click", gameReset); //set gameReset function to event handler
+
+    $(".cell").on("click", cellClick); // create eventhandler click cell
 
 
 

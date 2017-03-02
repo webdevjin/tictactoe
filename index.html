@@ -9,17 +9,23 @@
 <script src="js/jquery.js"></script>
 <script src="js/tictactoe.js"></script>
 <script src="https://use.fontawesome.com/c650f0d442.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
+
+<div class="container">
   <div class="strap_h1">
     <h1>Tic Tac Toe</h1>
   </div>
-<div class="container">
 
-  <div class="start">Start game</div>
+
+  <div id ="start">
+    Game start
+  </div>
+  <div id="message"></div>
 
   <div class="board">
+
      <div class="row">
        <div id="00" class="cell"></div>
        <div id="01" class="cell"></div>
@@ -36,8 +42,16 @@
        <div id="20" class="cell"></div>
        <div id="21" class="cell"></div>
        <div id="22" class="cell"></div>
+
+       <!--div class="row_player" id="names">
+           <input id="player1" type="text" placeholder="your name" />
+           <input id="player1_name" type="button" value="player1" />
+           <input id="player2" type="text" placeholder="your name" />
+           <input id="player2_name" type="button" value="player2" />
+         </div-->
     </div>
   </div>
+
 
 </div>
 
