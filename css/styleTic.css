@@ -49,18 +49,29 @@ h1, h2, h3, h4, h5 {
 	line-height: 40px;
 }
 
-#score {
-	
+#showScore_X {
+	float: left;
+	color: #cc6600;
 	background-color: none;
 	height: 40px;
 	width: 250px;
 	font-family: 'Montserrat', san-serif;
-	font-size: 20px
-	font-weight: 400;
+	font-size: 15px
+	font-weight:500;
 	line-height: 40px
 }
 
-
+#showScore_O {
+	float: left;
+	color: #cc6600;
+	background-color: none;
+	height: 40px;
+	width: 250px;
+	font-family: 'Montserrat', san-serif;
+	font-size: 15px
+	font-weight:500;
+	line-height: 40px
+}
 
 
 .board {

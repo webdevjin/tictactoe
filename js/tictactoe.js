@@ -10,6 +10,13 @@ $(document).ready(function() {
 
     var gameOver = false;  // set the ininial game start
 
+    var playScore_X = 0;
+    var playScore_O = 0;
+    var $scoreMsg_O = $('#showScore_O');
+    var $scoreMsg_X = $('#showScore_X')
+
+
+
 
     window.board = [  //create global vairable board with 3x3 blank, data pattern
       ["","",""],
@@ -115,22 +122,26 @@ $(document).ready(function() {
 
       $(this).addClass( currentTurn );
 
-      // $(this).html( currentTurn );
-
       // var xWin = checkWin_x();
       if( checkWin_x() ){
         $msg.html('X, You win!');
-        // alert('X wins!');
+        playScore_X++;
+        $scoreMsg_X.html('Score X: ' + playScore_X);
+        //$showscore.html(playScore_X);
+        // playScore_X += 1;
+        // playScore_X = playScore_X + 1
         gameOver = true;
-        gameReset();
+        gameReset(4000);
       } else if( checkWin_o() ){
         $msg.html('O, You win!');
+        playScore_O++;
+        $scoreMsg_O.html('Score O: ' + playScore_O);
         gameOver = true;
-        gameReset();
+        gameReset(4000);
       } else if ( turnCount === 9 ) {
         $msg.html("It's a draw!");
         gameOver = true;
-        gameReset();
+        gameReset(4000);
       }
 
 
@@ -143,22 +154,31 @@ $(document).ready(function() {
 
     };
 //create gameReset function to clear the board
-    window.gameReset = function(){
+    window.gameReset = function(delay){
       console.log("Game reset running");
       window.board = [
         ["","",""],
         ["","",""],
         ["","",""]
       ]
-//set time out for game result message display - 4s, clear message, clear board
+
+    //set time out for game result message display - 4s, clear message, clear board
+    // NOTE: if this function is called as a click handler, 'delay' will be the
+    // jQuery event object, not a number. But setTimeout is clever enough to
+    // just set a 0 milisecond delay (i.e. run the timeout code immediately)
+    // if you pass in something that is not a number as your delay argument...
+    // so this code still works! (for now)
       setTimeout(function(){
         $(".cell").removeClass('x').removeClass('o');
         turnCount = 0;
         $msg.html('');
         gameOver = false;
-      }, 4000);
+      }, delay);
+
 
     };
+
+
 
     $("#start").on("click", gameReset); //set gameReset function to event handler
 
